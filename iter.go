@@ -1,17 +1,23 @@
 // Package iter provides a syntantically different way to iterate over integers. That's it.
+//
+// Just github.com/bradfitz/iter with N renamed to Iter, so that you can dot import it
+// with less chance of name conflicts. 
 package iter
 
-// N returns a slice of n 0-sized elements, suitable for ranging over.
+// Iter returns a slice of n 0-sized elements, suitable for ranging over.
+// It is intended to be used with dot imports.
 //
 // For example:
 //
-//    for i := range iter.N(10) {
+//    import . "github.com/benkehoe/iter"
+//
+//    for i := range Iter(10) {
 //        fmt.Println(i)
 //    }
 //
 // ... will print 0 to 9, inclusive.
 //
 // It does not cause any allocations.
-func N(n int) []struct{} {
+func Iter(n int) []struct{} {
 	return make([]struct{}, n)
 }

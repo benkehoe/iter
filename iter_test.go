@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/bradfitz/iter"
+	. "github.com/benkehoe/iter"
 )
 
-func ExampleN() {
-	for i := range iter.N(4) {
+func ExampleIter() {
+	for i := range Iter(4) {
 		fmt.Println(i)
 	}
 	// Output:
@@ -21,7 +21,7 @@ func ExampleN() {
 func TestAllocs(t *testing.T) {
 	var x []struct{}
 	allocs := testing.AllocsPerRun(500, func() {
-		x = iter.N(1e9)
+		x = Iter(1e9)
 	})
 	if allocs > 0.1 {
 		t.Errorf("allocs = %v", allocs)
